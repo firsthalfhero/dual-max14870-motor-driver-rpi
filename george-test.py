@@ -11,38 +11,42 @@ class DriverFault(Exception):
     if motors.getFault():
         raise DriverFault """
     
-motors.motor1.setSpeed(MAX_SPEED)
-print("Motor 1 Forward Max Speed")
-fault = motors.getFault()
-print(fault)
-time.sleep(5)
+try: 
+    motors.setSpeeds(0, 0)
+    
+    motors.motor1.setSpeed(MAX_SPEED)
+    print("Motor 1 Forward Max Speed")
+    time.sleep(5)
+    
+    motors.motor1.setSpeed(0)
+    time.sleep(2)
 
-motors.motor1.setSpeed(MAX_SPEED) * -1
-print("Motor 1 Reverse Max Speed")
-fault = motors.getFault()
-print(fault)
-time.sleep(5)
+    motors.motor1.setSpeed(-MAX_SPEED)
+    print("Motor 1 Reverse Max Speed")
+    time.sleep(5)
 
-print("Motor 1 off")
-motors.motor1.setSpeed(0)
+    print("Motor 1 off")
+    motors.motor1.setSpeed(0)
 
-motors.motor2.setSpeed(MAX_SPEED)
-print("Motor 2 Forward Max Speed")
-fault = motors.getFault()
-print(fault)
-time.sleep(5)
+    motors.motor2.setSpeed(MAX_SPEED)
+    print("Motor 2 Forward Max Speed")
+    time.sleep(5)
+    
+    motors.motor2.setSpeed(0)
+    time.sleep(2)
 
-motors.motor2.setSpeed(MAX_SPEED) * -1
-print("Motor 2 Reverse Max Speed")
-fault = motors.getFault()
-print(fault)
-time.sleep(5)
+    motors.motor2.setSpeed(-MAX_SPEED)
+    print("Motor 2 Reverse Max Speed")
+    time.sleep(5)
 
-print("Motor 2 off")
-motors.motor2.setSpeed(0)
-time.sleep(1)
+    print("Motor 2 off")
+    motors.motor2.setSpeed(0)
+    time.sleep(1)
 
-motors.disable()
+    motors.disable()
+
+finally:
+    motors.forceStop()
 
 
 """ # Set up sequences of motor speeds.
