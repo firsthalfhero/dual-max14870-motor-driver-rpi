@@ -1,5 +1,6 @@
 from __future__ import print_function
 import time
+from typing import Mapping
 from dual_max14870_rpi import motors, MAX_SPEED
 
 # Define a custom exception to raise if a fault is detected.
@@ -10,7 +11,16 @@ def raiseIfFault():
     if motors.getFault():
         raise DriverFault
     
-motors.MAX_SPEED;
+motors.motor1.setSpeed(MAX_SPEED)
+print("Motor 1 Max Speed")
+raiseIfFault()
+time.sleep(10)
+
+motors.motor2.setSpeed(MAX_SPEED)
+print("Motor 2 Max Speed")
+raiseIfFault()
+time.sleep(10)
+motors.disable()
 
 """ # Set up sequences of motor speeds.
 test_forward_speeds = list(range(0, MAX_SPEED, 1)) + \
