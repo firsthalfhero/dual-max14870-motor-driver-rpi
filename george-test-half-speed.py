@@ -14,7 +14,7 @@ class DriverFault(Exception):
 try: 
     motors.setSpeeds(0, 0)
     
-    speed = 50
+    speed = 480
     
     motors.motor1.setSpeed(speed)
     print("Motor 1 Forward Max Speed")
